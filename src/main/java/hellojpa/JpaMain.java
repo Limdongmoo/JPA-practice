@@ -17,20 +17,14 @@ public class JpaMain {
 
         try {
 
-            // 비영속
-//            Member member = new Member();
-//            member.setId(5L);
-//            member.setName("SearchWithCache");
-//
-            // 영속
-//            em.persist(member);
+            //영속
+            Member memberA = new Member(150L, "A");
+            Member memberB = new Member(160L, "B");
 
-            //1차 캐시에서 조회
-            Member findMember1 = em.find(Member.class, 5L);
-            Member findMember2 = em.find(Member.class, 5L);
+            em.persist(memberA);
+            em.persist(memberB);
 
-            System.out.println(findMember2 == findMember1);
-
+            System.out.println("------------------------------");
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
