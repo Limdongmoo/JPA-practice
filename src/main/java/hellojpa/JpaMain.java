@@ -18,11 +18,8 @@ public class JpaMain {
         try {
 
             //영속
-            Member memberA = new Member(150L, "A");
-            Member memberB = new Member(160L, "B");
-
-            em.persist(memberA);
-            em.persist(memberB);
+            Member member = em.find(Member.class, 150L);
+            member.setName("ZZZZZZ");
 
             System.out.println("------------------------------");
             tx.commit();
