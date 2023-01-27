@@ -18,18 +18,20 @@ public class JpaMain {
         try {
 
             // 비영속
-            Member member = new Member();
-            member.setId(1L);
-            member.setName("HelloJPAJPA");
-
+//            Member member = new Member();
+//            member.setId(5L);
+//            member.setName("SearchWithCache");
+//
             // 영속
-            em.persist(member);
+//            em.persist(member);
 
             //1차 캐시에서 조회
-            Member findMember1 = em.find(Member.class, 1L);
-            //DB에서 조회 이후 1차 캐시에 저장
-            Member findMember2 = em.find(Member.class, 2L);
+            Member findMember1 = em.find(Member.class, 5L);
+            Member findMember2 = em.find(Member.class, 5L);
 
+            System.out.println(findMember2 == findMember1);
+
+            tx.commit();
         } catch (Exception e) {
             tx.rollback();
         } finally {
