@@ -19,7 +19,9 @@ public class JpaMain {
 
             //영속
             Member member = em.find(Member.class, 150L);
-            member.setName("ZZZZZZ");
+            member.setName("AAAAA");
+
+            em.detach(member);
 
             System.out.println("------------------------------");
             tx.commit();
