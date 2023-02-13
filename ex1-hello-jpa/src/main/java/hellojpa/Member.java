@@ -5,37 +5,41 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
-@SequenceGenerator(
-        name = "member_seq_generator",
-        sequenceName = "member_seq",
-        initialValue = 1, allocationSize = 50
-)
 public class Member {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_seq_generator")
+    @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
-    private Integer age;
+    @Column(name = "USERNAME")
+    private String name;
 
-    @Column(name = "name", nullable = false)
-    private String username;
-
-    @Lob
-    private String description;
-
-    private LocalDate createdDate;
-
-    private LocalDate lastModifiedDate;
-
-    @Enumerated(EnumType.STRING)
-    private RoleType roleType;
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    @ManyToOne      //해당 테이블을 기준으로
+    @JoinColumn(name = "TEAM_ID")   //실제 조인하는 컬럼을 적어준다.
+    private Team team;
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }
