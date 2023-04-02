@@ -1,8 +1,6 @@
 package jpabook.jpashop;
 
-import jpabook.jpashop.domain.Member;
-import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderItem;
+import jpabook.jpashop.domain.Movie;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -18,8 +16,10 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
 
         try {
-            Order order = new Order();
-            order.addOrderItem(new OrderItem());
+            Movie movie = new Movie();
+            movie.setActor("AA");
+            movie.setDirector("BB");
+            em.persist(movie);
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
